@@ -12,6 +12,8 @@ type User struct {
 	Login          string `json:"login"`
 	PasswordHashed string `json:"password_hashed"`
 
+	Email string `json:"email"`
+
 	PublicKey           string `json:"public_key"`            //base64 Encoded
 	PrivateKeyEncrypted string `json:"private_key_encrypted"` //base64 Encoded, Encrypted with AES
 }
@@ -22,6 +24,9 @@ func (u *User) Verify() error {
 		if _, exists := allowed[x]; !exists {
 			return errors.New(fmt.Sprintf("invalid character in the login: '%s'", x))
 		}
+	}
+	if !utils.ValidateEmail(u.Email) {
+		return errors.New("invalid email")
 	}
 	return nil
 }
