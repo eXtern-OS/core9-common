@@ -6,12 +6,7 @@ import (
 )
 
 func ReadConfig(parseTo interface{}, names ...string) error {
-	var name string
-	if len(names) == 0 {
-		name = "config.json"
-	} else {
-		name = names[0]
-	}
+	name := UnpackDefault(names, "config.json")
 
 	d, err := os.ReadFile(name)
 
