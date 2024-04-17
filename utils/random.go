@@ -17,7 +17,7 @@ const (
 func RandomString(l ...int) string {
 	length := UnpackDefault(l, 10)
 	b := make([]byte, length)
-	var src = rand.NewSource(time.Now().UnixNano())
+	var src = rand.NewSource(time.Now().UnixMilli())
 	for i, cache, remain := length-1, src.Int63(), letterIdxMax; i >= 0; {
 		if remain == 0 {
 			cache, remain = src.Int63(), letterIdxMax
