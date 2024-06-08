@@ -65,7 +65,7 @@ package app
 */
 
 type Revision struct {
-	Version string `json:"version"`
+	Version string `json:"version" bson:"version"`
 }
 
 type SnapAppMedia string
@@ -77,38 +77,38 @@ var (
 )
 
 type Media struct {
-	Height int          `json:"height"`
-	Type   SnapAppMedia `json:"type"`
-	URL    string       `json:"url"`
-	Width  int          `json:"width"`
+	Height int          `json:"height" bson:"height"`
+	Type   SnapAppMedia `json:"type" bson:"type"`
+	URL    string       `json:"url" bson:"url"`
+	Width  int          `json:"width" bson:"width"`
 }
 
 type SnapPublisher struct {
-	DisplayName string `json:"display-name"`
-	Id          string `json:"id"`
-	Username    string `json:"username"`
-	Validation  string `json:"validation"`
+	DisplayName string `json:"display-name" bson:"display_name"`
+	Id          string `json:"id" bson:"id"`
+	Username    string `json:"username" bson:"username"`
+	Validation  string `json:"validation" bson:"validation"`
 }
 
 type SApp struct {
-	Description string `json:"description"`
+	Description string `json:"description" bson:"description"`
 	Media       []Media
 
-	Publisher SnapPublisher `json:"publisher"`
-	Title     string        `json:"title"`
+	Publisher SnapPublisher `json:"publisher" bson:"publisher"`
+	Title     string        `json:"title" bson:"title"`
 }
 
 type Snap struct {
-	Name string   `json:"name"`
-	Rev  Revision `json:"revision"`
+	Name string   `json:"name" bson:"name"`
+	Rev  Revision `json:"revision" bson:"rev"`
 
-	App SApp `json:"snap"`
+	App SApp `json:"snap" bson:"app"`
 
-	SnapID string `json:"snap-id"`
+	SnapID string `json:"snap-id" bson:"snap_id"`
 }
 
 type SnapResults struct {
-	Results []Snap `json:"results"`
+	Results []Snap `json:"results" bson:"results"`
 }
 
 func (s *Snap) Export() App {
