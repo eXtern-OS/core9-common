@@ -12,10 +12,10 @@ func ArrayToMap[K Hashable, V any](arr []K, defVal V) map[K]V {
 	return res
 }
 
-func ArrayToMapUniversal[K, R any, V Hashable](arr []K, defVal R, key func(K) V) map[V]R {
+func ArrayToMapUniversal[K, R any, V Hashable](arr []K, val func(K) R, key func(K) V) map[V]R {
 	res := make(map[V]R)
 	for _, x := range arr {
-		res[key(x)] = defVal
+		res[key(x)] = val(x)
 	}
 	return res
 }
